@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "alignment")
-public class Align {
+public class Alignment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "alignment_id")

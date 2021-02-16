@@ -1,17 +1,23 @@
 package com.aim.java.FinalProject.playerDB.DungeonsAndDragons.players;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.aim.java.FinalProject.playerDB.DungeonsAndDragons.alignment.Alignment;
 import com.aim.java.FinalProject.playerDB.DungeonsAndDragons.armor.Armors;
 import com.aim.java.FinalProject.playerDB.DungeonsAndDragons.playerclass.PlayerClass;
 import com.aim.java.FinalProject.playerDB.DungeonsAndDragons.races.Races;
+import com.aim.java.FinalProject.playerDB.DungeonsAndDragons.stats.Stats;
 import com.aim.java.FinalProject.playerDB.DungeonsAndDragons.weapons.Weapons;
 
 @Entity
@@ -43,6 +49,14 @@ public class Players {
     @ManyToOne
     @JoinColumn(name = "weapons_id", nullable = false)
     private Weapons weapons;
+
+    @ManyToOne
+    @JoinColumn(name = "alignment_id", nullable = false)
+    private Alignment alignment;
+
+    @ManyToMany
+    @JoinTable(name = "player_stats", joinColumns = @JoinColumn (name = "player_id"), inverseJoinColumns = @JoinColumn(name = "stats_id"))
+    private List<Stats> stats;
 
 
     public Integer getId() {
@@ -108,4 +122,21 @@ public class Players {
     public void setWeapons(Weapons weapons) {
         this.weapons = weapons;
     }
+
+    public Alignment getAlignment() {
+        return alignment;
+    }
+
+    public void setAlignment(Alignment alignment) {
+        this.alignment = alignment;
+    }
+
+    public List<Stats> getStats() {
+        return stats;
+    }
+
+    public void setStats(List<Stats> stats) {
+        this.stats = stats;
+    }
+
 }

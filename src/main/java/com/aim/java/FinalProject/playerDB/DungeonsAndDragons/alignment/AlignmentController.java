@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/api/alignment")
-public class AlignController {
+public class AlignmentController {
     
     @Autowired
 
-    private AlignRepository alignRepository;
+    private AlignmentRepository alignmentRepository;
 
     @GetMapping(path = "")
-    public Iterable<Align>getAllAligns() {
-        return alignRepository.findAll();
+    public Iterable<Alignment>getAllAlignments() {
+        return alignmentRepository.findAll();
     }
 
     @GetMapping(path = "/{id}")
-    public Align getAligns(@PathVariable(value = "id") Integer id) {
-        Optional<Align> align = alignRepository.findById(id);
-        return align.get();
+    public Alignment getAlignments(@PathVariable(value = "id") Integer id) {
+        Optional<Alignment> alignment = alignmentRepository.findById(id);
+        return alignment.get();
     }
 }
